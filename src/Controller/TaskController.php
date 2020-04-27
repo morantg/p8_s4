@@ -67,7 +67,7 @@ class TaskController extends Controller
      */
     public function editAction(Task $task, Request $request, UserInterface $user)
     {
-        if ($user != $task->getUser()) {
+        if ($user != $task->getUser() && (!in_array('ROLE_ADMIN', $user->getRoles()) || $task->getUser() != null)) {
             return $this->redirectToRoute('task_list');
         }
         
