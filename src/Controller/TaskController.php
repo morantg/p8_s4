@@ -24,7 +24,8 @@ class TaskController extends Controller
      */
     public function listActionTodo()
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('App\Entity\Task')->findBy(['isDone' => false])]);
+        $todo = true;
+        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('App\Entity\Task')->findBy(['isDone' => false]), 'todo' => $todo]);
     }
 
     /**
@@ -32,7 +33,8 @@ class TaskController extends Controller
      */
     public function listActionCompleted()
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('App\Entity\Task')->findBy(['isDone' => true])]);
+        $todo = false;
+        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('App\Entity\Task')->findBy(['isDone' => true]), 'todo' => $todo]);
     }
 
     /**
