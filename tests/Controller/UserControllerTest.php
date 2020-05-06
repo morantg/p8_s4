@@ -9,24 +9,27 @@ use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
-class TaskControllerTest extends WebTestCase
+class UserControllerTest extends WebTestCase
 {
     use FixturesTrait;
     use NeedLogin;
     
-    public function testAddNewTask()
+    public function testAddNewUser()
     {
         $client = static::createClient();
         $users = $this->loadFixtureFiles([__DIR__ . '/users.yaml']);
-        $this->login($client, $users['user_user']);
+        $this->login($client, $users['user_admin']);
         
         $crawler = $client->request('GET','/');
-        $link = $crawler->SelectLink('Créer une nouvelle tâche')->link();
+        $link = $crawler->SelectLink('Créer un utilisateur')->link();
         $crawler = $client->click($link);
         
         $form = $crawler->selectButton('Ajouter')->form([
-            'task[title]' => 'test',
-            'task[content]' => 'contenu test'
+            'user[username]' => 'user',
+            'user[password][first]' => '123',
+            'user[password][second]' => '123',
+            'user[email]' => 'user@domain.fr',
+            'user[roles][0]' => false
         ]);
         $client->submit($form);
 
