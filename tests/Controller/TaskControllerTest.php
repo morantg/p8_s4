@@ -51,6 +51,20 @@ class TaskControllerTest extends WebTestCase
         $client->followRedirect();
         $this->assertSelectorExists('.alert.alert-success');   
     }
-    
-    
+
+    public function testToggleTask()
+    {
+        $client = static::createClient();
+        $users = $this->loadFixtureFiles([__DIR__ . '/users.yaml', __DIR__ . '/tasks.yaml']);
+        $this->login($client, $users['user_admin']);
+        
+        $crawler = $client->request('GET','/tasks/todo');
+        
+        $form = $crawler->SelectButton('Marquer comme faite')->form();
+        $client->submit($form);
+        
+        $client->followRedirect();
+        $this->assertSelectorExists('.alert.alert-success');
+    }
+
 }

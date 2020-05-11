@@ -20,7 +20,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/tasksTodo", name="task_todo")
+     * @Route("/tasks/todo", name="task_todo")
      */
     public function listActionTodo()
     {
@@ -29,7 +29,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/tasksCompleted", name="task_completed")
+     * @Route("/tasks/completed", name="task_completed")
      */
     public function listActionCompleted()
     {
