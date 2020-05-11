@@ -2,11 +2,12 @@
 
 namespace App\Tests\Repository;
 
-use App\Repository\UserRepository;
+use App\Repository\TaskRepository;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class UserRepositoryTest extends WebTestCase
+
+class TaskRepositoryTest extends WebTestCase
 {
 
     use FixturesTrait;
@@ -14,9 +15,9 @@ class UserRepositoryTest extends WebTestCase
     public function testCount() {
         self::bootKernel();
         $users = $this->loadFixtureFiles([
-            __DIR__ . '/UserRepositoryTestFixtures.yaml'
+            __DIR__ . '/TaskRepositoryTestFixtures.yaml'
         ]);
-        $users = self::$container->get(UserRepository::class)->count([]);
+        $users = self::$container->get(TaskRepository::class)->count([]);
         $this->assertEquals(10, $users);
     }
 }
