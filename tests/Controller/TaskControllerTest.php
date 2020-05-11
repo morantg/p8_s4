@@ -33,6 +33,24 @@ class TaskControllerTest extends WebTestCase
         $client->followRedirect();
         $this->assertSelectorExists('.alert.alert-success');   
     }
+
+    public function testEditTask()
+    {
+        $client = static::createClient();
+        $users = $this->loadFixtureFiles([__DIR__ . '/users.yaml', __DIR__ . '/tasks.yaml']);
+        $this->login($client, $users['user_admin']);
+        
+        $crawler = $client->request('GET','/tasks/1/edit');
+        
+        $form = $crawler->selectButton('Modifier')->form([
+            'task[title]' => 'nouveau title',
+            'task[content]' => 'nouveau content'
+        ]);
+        $client->submit($form);
+
+        $client->followRedirect();
+        $this->assertSelectorExists('.alert.alert-success');   
+    }
     
     
 }

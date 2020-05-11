@@ -1,0 +1,10 @@
+App\Entity\Task:
+  task_1:
+    title: "test"
+    content: "test test"
+    user: null
+  task_2:
+    title: "test2"
+    content: "test2 test2"
+    user: null
+     
