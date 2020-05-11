@@ -67,4 +67,19 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorExists('.alert.alert-success');
     }
 
+    public function testDeleteTask()
+    {
+        $client = static::createClient();
+        $users = $this->loadFixtureFiles([__DIR__ . '/users.yaml', __DIR__ . '/tasks.yaml']);
+        $this->login($client, $users['user_admin']);
+        
+        $crawler = $client->request('GET','/tasks');
+        
+        $form = $crawler->SelectButton('Supprimer')->form();
+        $client->submit($form);
+        
+        $client->followRedirect();
+        $this->assertSelectorExists('.alert.alert-success');
+    }
+
 }
