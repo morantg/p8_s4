@@ -25,11 +25,30 @@ class UserControllerTest extends WebTestCase
         $crawler = $client->click($link);
         
         $form = $crawler->selectButton('Ajouter')->form([
-            'user[username]' => 'user',
+            'user[username]' => 'user2',
             'user[password][first]' => '123',
             'user[password][second]' => '123',
-            'user[email]' => 'user@domain.fr',
+            'user[email]' => 'user2@domain.fr',
             'user[roles][0]' => false
+        ]);
+        $client->submit($form);
+
+        $client->followRedirect();
+        $this->assertSelectorExists('.alert.alert-success');   
+    }
+
+    public function testEditUser()
+    {
+        $client = static::createClient();
+        $users = $this->loadFixtureFiles([__DIR__ . '/users.yaml']);
+        $this->login($client, $users['user_admin']);
+        
+        $crawler = $client->request('GET','/users/3/edit');
+        
+        $form = $crawler->selectButton('Modifier')->form([
+            'user[username]' => 'new username',
+            'user[password][first]' => '123',
+            'user[password][second]' => '123',
         ]);
         $client->submit($form);
 
