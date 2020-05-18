@@ -15,17 +15,20 @@ class SecurityControllerTest extends WebTestCase
     use FixturesTrait;
     use NeedLogin;
     
+    public function setUp() {
+        $this->fixtures = $this->loadFixtureFiles([__DIR__ . '/users.yaml']);
+        $this->client = static::createClient();
+    } 
+
     public function testRedirectToLogin()
     {
-        $client = static::createClient();
-        $client->request('GET','/tasks');
+        $this->client->request('GET','/tasks');
         $this->assertResponseRedirects('http://localhost/login');
     }
 
     public function testDisplayLogin()
     {
-        $client = static::createClient();
-        $client->request('GET','/login');
+        $this->client->request('GET','/login');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertSelectorTextContains('h1', 'Se connecter');
         $this->assertSelectorNotExists('.alert.alert-danger');
@@ -33,28 +36,25 @@ class SecurityControllerTest extends WebTestCase
 
     public function testLoginWithBadCredentials()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET','/login');
+        $crawler = $this->client->request('GET','/login');
         $form = $crawler->selectButton('Se connecter')->form([
             '_username' => 'test',
             '_password' => 'fakepassword'
         ]);
-        $client->submit($form);
+        $this->client->submit($form);
         $this->assertResponseRedirects('http://localhost/login');
-        $client->followRedirect();    
+        $this->client->followRedirect();    
         $this->assertSelectorExists('.alert.alert-danger');
     }
 
     public function testSuccessfullLogin()
     {
-        $this->loadFixtureFiles([__DIR__ . '/users.yaml']);
-        $client = static::createClient();
-        $crawler = $client->request('GET','/login');
+        $crawler = $this->client->request('GET','/login');
         $form = $crawler->selectButton('Se connecter')->form([
             '_username' => 'test',
             '_password' => '0000'
         ]);
-        $client->submit($form);
+        $this->client->submit($form);
         /*$csrfToken = $client->getContainer()->get('security.csrf.token_manager')->getToken('authenticate');
         $client->request('POST', 'login',[
             '_csrf_token' => $csrfToken,
@@ -66,28 +66,22 @@ class SecurityControllerTest extends WebTestCase
 
     public function testLetAuthencatedUserAccesTasks()
     {
-        $client = static::createClient();
-        $users = $this->loadFixtureFiles([__DIR__ . '/users.yaml']);
-        $this->login($client, $users['user_user']);
-        $client->request('GET','/tasks');
+        $this->login($this->client, $this->fixtures['user_user']);
+        $this->client->request('GET','/tasks');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 
     public function testAdminRequireAdminRole()
     {
-        $client = static::createClient();
-        $users = $this->loadFixtureFiles([__DIR__ . '/users.yaml']);
-        $this->login($client, $users['user_user']);
-        $client->request('GET','/users');
+        $this->login($this->client, $this->fixtures['user_user']);
+        $this->client->request('GET','/users');
         $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
     }
 
     public function testAdminRequireAdminRoleWithSufficientRole()
     {
-        $client = static::createClient();
-        $users = $this->loadFixtureFiles([__DIR__ . '/users.yaml']);
-        $this->login($client, $users['user_admin']);
-        $client->request('GET','/users');
+        $this->login($this->client, $this->fixtures['user_admin']);
+        $this->client->request('GET','/users');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 }
