@@ -1,0 +1,4 @@
+App\Entity\Task:
+  task:
+    title: title de test
+    content: content de test

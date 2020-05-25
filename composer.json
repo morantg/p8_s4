@@ -23,9 +23,13 @@
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "liip/test-fixtures-bundle": "1.0.0",
         "symfony/debug-pack": "^1.0",
         "symfony/maker-bundle": "^1.15",
-        "symfony/web-server-bundle": "4.4.*"
+        "symfony/phpunit-bridge": "^5.0",
+        "symfony/web-server-bundle": "4.4.*",
+        "theofidry/alice-data-fixtures": "^1.1"
     },
     "config": {
         "preferred-install": {
