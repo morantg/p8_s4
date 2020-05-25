@@ -20,7 +20,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/tasksTodo", name="task_todo")
+     * @Route("/tasks/todo", name="task_todo")
      */
     public function listActionTodo()
     {
@@ -29,7 +29,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/tasksCompleted", name="task_completed")
+     * @Route("/tasks/completed", name="task_completed")
      */
     public function listActionCompleted()
     {
@@ -97,15 +97,9 @@ class TaskController extends AbstractController
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
-        if($task->isDone()){
-            $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
+        $this->addFlash('success', sprintf('La tâche %s a bien été mise à jour.', $task->getTitle()));
 
-            return $this->redirectToRoute('task_completed');
-        }
-
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme non terminée.', $task->getTitle()));
-
-        return $this->redirectToRoute('task_todo');
+        return $this->redirectToRoute('task_list');
     }
 
     /**

@@ -1,0 +1,16 @@
+App\Entity\User:
+  user_user:
+    username: user
+    email: user\@domain.com
+    roles : []
+    password: \$2y\$10\$aQEGMN..2SgobatDmhURW.UBMDsQRbBv3V5gOS3ejEjjZCKDKlUhS
+  user_admin:
+    username: admin
+    email: admin\@domain.com
+    roles : ["ROLE_ADMIN"]
+    password: \$2y\$10\$aQEGMN..2SgobatDmhURW.UBMDsQRbBv3V5gOS3ejEjjZCKDKlUhS 
+  user_test:
+    username: test
+    email: test\@domain.com
+    roles : []
+    password: \$2y\$10\$aQEGMN..2SgobatDmhURW.UBMDsQRbBv3V5gOS3ejEjjZCKDKlUhS     

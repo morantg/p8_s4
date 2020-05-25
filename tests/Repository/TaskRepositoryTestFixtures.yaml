@@ -1,0 +1,5 @@
+App\Entity\Task:
+    user{1..10}:
+        title: title<current()>
+        content: content<current()>
+        
