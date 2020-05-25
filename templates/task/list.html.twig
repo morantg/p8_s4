@@ -34,6 +34,11 @@
                         <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
                     </form>
                     {% endif %}
+                    {% if task.user is same as(app.user) or ('ROLE_ADMIN' in app.user.roles and task.user is null) %}
+                    <form action="{{ path('task_edit', {'id' : task.id }) }}">
+                        <button class="btn btn-warning btn-sm pull-right">Edition</button>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
         </div>

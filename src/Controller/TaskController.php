@@ -65,8 +65,12 @@ class TaskController extends Controller
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
-    public function editAction(Task $task, Request $request)
+    public function editAction(Task $task, Request $request, UserInterface $user)
     {
+        if ($user != $task->getUser() && (!in_array('ROLE_ADMIN', $user->getRoles()) || $task->getUser() != null)) {
+            return $this->redirectToRoute('task_list');
+        }
+        
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
