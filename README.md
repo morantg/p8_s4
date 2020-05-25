@@ -26,4 +26,4 @@ Créez la base de donné :
 
 Réalisez la migration de votre base de donnée avec la commande suivante :
 
-> php b
+> php bin/console doctrine:migrations:migrate
