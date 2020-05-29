@@ -99,7 +99,7 @@ access_control:
 
 ``` 
 
-On voit par exemple ici que tout les utilisateurs anonymes peuvent accéder à la route /login. Par contre seule les admins peuvent accéder à l'url /users. Et enfi on peut voir que les utilisateurs authentifié grace au formulaire peuvent accéder à l'ensemble du site (hormis la route /users évidemment).
+On voit par exemple ici que tout les utilisateurs anonymes peuvent accéder à la route /login. Par contre seule les admins peuvent accéder à l'url /users. Et enfin on peut voir que les utilisateurs authentifié grace au formulaire peuvent accéder à l'ensemble du site (hormis la route /users évidemment).
 
 Noté que toute personne connecté via le formulaire posséde au moins le rôle ROLE_USER. Vous pouvez voir cela dans l'entité User au niveau de la fonction getRoles().
 
