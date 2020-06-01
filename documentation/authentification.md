@@ -119,10 +119,3 @@ Sur ce projet vous avez donc 3 type d'utilisateur.
 1. L'utilisateur anonyme
 2. L'utilisateur connecté qui à le rôle ROLE_USER
 3. L'administrateur qui à les 2 rôles ROLE_USER et ROLE_ADMIN
-
-
-
-
-
-
- 
