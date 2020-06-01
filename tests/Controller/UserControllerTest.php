@@ -8,21 +8,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class UserControllerTest extends WebTestCase
 {
     use FixturesTrait;
     use NeedLogin;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->fixtures = $this->loadFixtureFiles([__DIR__ . '/users.yaml']);
         $this->client = static::createClient();
         $this->login($this->client, $this->fixtures['user_admin']);
-    }    
+    }
 
     public function testAddNewUser()
     {
-        $crawler = $this->client->request('GET','/');
+        $crawler = $this->client->request('GET', '/');
         $link = $crawler->SelectLink('Créer un utilisateur')->link();
         $crawler = $this->client->click($link);
         
@@ -36,12 +36,12 @@ class UserControllerTest extends WebTestCase
         $this->client->submit($form);
 
         $this->client->followRedirect();
-        $this->assertSelectorExists('.alert.alert-success');   
+        $this->assertSelectorExists('.alert.alert-success');
     }
 
     public function testEditUser()
     {
-        $crawler = $this->client->request('GET','/users/3/edit');
+        $crawler = $this->client->request('GET', '/users/3/edit');
         $form = $crawler->selectButton('Modifier')->form([
             'user[username]' => 'new username',
             'user[password][first]' => '123',
@@ -50,8 +50,6 @@ class UserControllerTest extends WebTestCase
         $this->client->submit($form);
 
         $this->client->followRedirect();
-        $this->assertSelectorExists('.alert.alert-success');   
+        $this->assertSelectorExists('.alert.alert-success');
     }
-    
-    
 }

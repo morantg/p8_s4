@@ -6,13 +6,12 @@ use App\Repository\TaskRepository;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class TaskRepositoryTest extends WebTestCase
 {
-
     use FixturesTrait;
     
-    public function testCount() {
+    public function testCount()
+    {
         self::bootKernel();
         $users = $this->loadFixtureFiles([
             __DIR__ . '/TaskRepositoryTestFixtures.yaml'
