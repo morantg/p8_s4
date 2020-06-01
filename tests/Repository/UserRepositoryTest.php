@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserRepositoryTest extends WebTestCase
 {
-
     use FixturesTrait;
     
-    public function testCount() {
+    public function testCount()
+    {
         self::bootKernel();
         $users = $this->loadFixtureFiles([
             __DIR__ . '/UserRepositoryTestFixtures.yaml'
