@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Task;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -32,7 +31,7 @@ class AppFixtures extends Fixture
 
             $task->setCreatedAt($faker->dateTimeBetween('-6 months'))
                  ->setTitle($faker->word())
-                 ->setContent($faker->sentence(10, true));  
+                 ->setContent($faker->sentence(10, true));
             $manager->persist($task);
         }
 
@@ -42,7 +41,7 @@ class AppFixtures extends Fixture
             $task2->setUser($user)
                   ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                   ->setTitle($faker->word())
-                  ->setContent($faker->sentence(10, true));  
+                  ->setContent($faker->sentence(10, true));
             $manager->persist($task2);
         }
 
@@ -52,7 +51,7 @@ class AppFixtures extends Fixture
             $task3->setUser($user2)
                   ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                   ->setTitle($faker->word())
-                  ->setContent($faker->sentence(10, true));  
+                  ->setContent($faker->sentence(10, true));
             $manager->persist($task3);
         }
 
