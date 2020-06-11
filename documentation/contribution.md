@@ -29,3 +29,29 @@ Pusher la branche sur votre fork
 ## Etape 6
 
 Une fois votre contribution terminée réalisez un pull request sur github.
+
+
+# Procesus de qualité
+
+## Standard PSR12
+
+Votre contribution doit être aux norme PSR12. Vous pouvez vous aidez de php codeSniffer pour vous en assurez.
+Pour cela utilisez la commande suivante pour identifier les erreurs :
+
+> phpcs --standard=PSR12 /path/to/code-directory
+
+Et pour corriger automatiquement les erreurs vous pouvez utiliser la commande suivante.
+
+> phpcbf --standard=PSR2 /path/to/code-directory
+
+## Test
+
+Chaque ajout de code que vous réalisé doit être couvert par des tests unitaire ou fonctionnel.
+Vous pouvez voir le tau de couverture de votre code avec la commande suivante :
+
+> php bin/phpunit --coverage-html documentation/code-coverage
+
+Ensuite ouvrez le fichier qui ce trouve dans documentation/code-coverage/index.html pour plus de détail.
+
+Attention xdebug doit être installé.
+
