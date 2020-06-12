@@ -56,12 +56,6 @@ class SecurityControllerTest extends WebTestCase
             '_password' => '0000'
         ]);
         $this->client->submit($form);
-        /*$csrfToken = $client->getContainer()->get('security.csrf.token_manager')->getToken('authenticate');
-        $client->request('POST', 'login',[
-            '_csrf_token' => $csrfToken,
-            '_username' => 'test',
-            '_password' => '0000'
-        ]);*/
         $this->assertResponseRedirects('http://localhost/');
     }
 

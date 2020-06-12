@@ -20,12 +20,6 @@ class UserTest extends WebTestCase
             ->setEmail("test@gmail.com");
     }
 
-    /*public function assertHasErrors(InvitationCode $code, int $number = 0)
-    {
-        self::bootKernel();
-        $error = self::$container->get('validator')->validate($code);
-        $this->assertCount($number, $error);
-    }*/
     public function assertHasErrors(User $user, int $number = 0)
     {
         self::bootKernel();

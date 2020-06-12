@@ -19,12 +19,6 @@ class TaskTest extends WebTestCase
             ->setContent("Content test");
     }
 
-    /*public function assertHasErrors(InvitationCode $code, int $number = 0)
-    {
-        self::bootKernel();
-        $error = self::$container->get('validator')->validate($code);
-        $this->assertCount($number, $error);
-    }*/
     public function assertHasErrors(Task $task, int $number = 0)
     {
         self::bootKernel();

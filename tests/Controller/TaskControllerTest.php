@@ -56,6 +56,12 @@ class TaskControllerTest extends WebTestCase
         $this->assertResponseRedirects('/tasks');
     }
 
+    public function testAccesTasksCompleted()
+    {
+        $this->client->request('GET', '/tasks/completed');
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+    }
+
     public function testToggleTask()
     {
         $crawler = $this->client->request('GET', '/tasks/todo');
