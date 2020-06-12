@@ -35,9 +35,9 @@ Créez la base de donné :
 
 ## Etape 5
 
-Réalisez la migration de votre base de donnée avec la commande suivante :
+Mettez à jour votre base de donnée avec la commande suivante :
 
-> php bin/console doctrine:migrations:migrate
+> php bin/console doctrine:schema:update --force
 
 ## Etape 6 (optionnel)    
 
