@@ -49,6 +49,13 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorExists('.alert.alert-success');
     }
 
+    public function testEditTaskRequireAdminRole()
+    {
+        $this->login($this->client, $this->fixtures['user_user']);
+        $this->client->request('GET', '/tasks/1/edit');
+        $this->assertResponseRedirects('/tasks');
+    }
+
     public function testToggleTask()
     {
         $crawler = $this->client->request('GET', '/tasks/todo');
