@@ -21,5 +21,4 @@ trait NeedLogin
         $cookie = new Cookie($session->getName(), $session->getId());
         $client->getCookieJar()->set($cookie);
     }
-    
 }
